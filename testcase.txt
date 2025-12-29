@@ -1,0 +1,140 @@
+1. Test Users (for POST /users)
+
+Create an admin user
+
+{
+  "name": "Admin User",
+  "email": "admin@example.com",
+  "role": "admin"
+}
+
+
+Create normal member users
+
+{
+  "name": "Alice Johnson",
+  "email": "alice@example.com",
+  "role": "member"
+}
+
+{
+  "name": "Bob Smith",
+  "email": "bob@example.com",
+  "role": "member"
+}
+
+{
+  "name": "Charlie Brown",
+  "email": "charlie@example.com",
+  "role": "member"
+}
+
+
+⚠ Test duplicate email (should fail)
+
+{
+  "name": "Fake Alice",
+  "email": "alice@example.com",
+  "role": "member"
+}
+
+2. Test Events (for POST /events)
+
+📌 Use real userId from created users in Postman response.
+
+Login events
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "login", "metadata": { "ip": "192.168.1.1" } }
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "login", "metadata": { "ip": "10.0.0.5" } }
+
+
+Logout event
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "logout", "metadata": { "sessionDuration": 300 } }
+
+
+File Upload
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "file_upload", "metadata": { "fileName": "report.pdf", "sizeKB": 204 } }
+
+
+File Download
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "file_download", "metadata": { "fileName": "data.zip", "source": "drive" } }
+
+
+More sample mix events (create multiple for analytics)
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "file_upload", "metadata": { "fileName": "image.png" } }
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "file_download", "metadata": { "fileName": "notes.txt" } }
+
+3. Invalid event test cases
+
+❌ Invalid userId (should return 404)
+
+{ "userId": "507f1f77bcf86cd799439011", "eventType": "login", "metadata": { "ip": "1.1.1.1" } }
+
+
+❌ Invalid eventType (should return 400)
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "signup", "metadata": {} }
+
+
+❌ Missing metadata field (still valid because optional)
+
+{ "userId": "REPLACE_WITH_USER_ID", "eventType": "login" }
+
+4. Filter tests (for GET /events)
+
+Get login events after date
+
+GET /events?eventType=login&startTime=2025-01-01
+
+
+Get events for a specific user
+
+GET /events?userId=REPLACE_WITH_USER_ID
+
+
+Get uploads only
+
+GET /events?eventType=file_upload
+
+
+Get events in range
+
+GET /events?startTime=2025-01-01T00:00:00Z&endTime=2025-12-31T23:59:59Z
+
+5. Analytics tests
+
+GET /analytics/events-summary
+✔ You should see counts like:
+
+{
+  "login": 2,
+  "logout": 1,
+  "file_upload": 2,
+  "file_download": 2
+}
+
+
+GET /analytics/user-activity
+✔ You should see an array like:
+
+[
+  {
+    "userId": "REPLACE",
+    "userName": "Alice Johnson",
+    "totalEvents": 5,
+    "lastEventAt": "2025-12-26T12:10:30.000Z"
+  },
+  {
+    "userId": "REPLACE",
+    "userName": "Bob Smith",
+    "totalEvents": 3,
+    "lastEventAt": "2025-12-26T11:05:12.000Z"
+  }
+]
+
