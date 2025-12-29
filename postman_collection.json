@@ -1,0 +1,418 @@
+{
+    "info": {
+        "name": "User Event Tracking & Analytics API",
+        "description": "Complete test cases for all API endpoints",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "Create User - Admin",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"role\": \"admin\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/users",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "users"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create User - Member",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Alice Johnson\",\n  \"email\": \"alice@example.com\",\n  \"role\": \"member\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/users",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "users"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create User - Duplicate Email (Should Fail)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Alice Duplicate\",\n  \"email\": \"alice@example.com\",\n  \"role\": \"member\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/users",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "users"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get All Users",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/users",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "users"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Events",
+            "item": [
+                {
+                    "name": "Create Event - Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": \"REPLACE_WITH_ACTUAL_USER_ID\",\n  \"eventType\": \"login\",\n  \"metadata\": {\n    \"ip\": \"192.168.1.1\"\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/events",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Event - Logout",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": \"REPLACE_WITH_ACTUAL_USER_ID\",\n  \"eventType\": \"logout\",\n  \"metadata\": {\n    \"ip\": \"192.168.1.1\"\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/events",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Event - File Upload",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": \"REPLACE_WITH_ACTUAL_USER_ID\",\n  \"eventType\": \"file_upload\",\n  \"metadata\": {\n    \"fileName\": \"report.pdf\",\n    \"fileSize\": \"2.5MB\"\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/events",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Event - File Download",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": \"REPLACE_WITH_ACTUAL_USER_ID\",\n  \"eventType\": \"file_download\",\n  \"metadata\": {\n    \"fileName\": \"document.docx\"\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/events",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Event - Invalid User ID (Should Fail)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": \"invalid_id_123\",\n  \"eventType\": \"login\",\n  \"metadata\": {\n    \"ip\": \"10.0.0.1\"\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/events",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get All Events",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/events",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Events - Filter by Event Type",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/events?eventType=login",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ],
+                            "query": [
+                                {
+                                    "key": "eventType",
+                                    "value": "login"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Events - Filter by User ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/events?userId=REPLACE_WITH_ACTUAL_USER_ID",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ],
+                            "query": [
+                                {
+                                    "key": "userId",
+                                    "value": "REPLACE_WITH_ACTUAL_USER_ID"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Events - Filter by Date Range",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/events?startTime=2024-01-01&endTime=2024-12-31",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ],
+                            "query": [
+                                {
+                                    "key": "startTime",
+                                    "value": "2024-01-01"
+                                },
+                                {
+                                    "key": "endTime",
+                                    "value": "2024-12-31"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Events - Multiple Filters",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/events?eventType=login&startTime=2024-01-01",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "events"
+                            ],
+                            "query": [
+                                {
+                                    "key": "eventType",
+                                    "value": "login"
+                                },
+                                {
+                                    "key": "startTime",
+                                    "value": "2024-01-01"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Analytics",
+            "item": [
+                {
+                    "name": "Get Events Summary",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/analytics/events-summary",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "analytics",
+                                "events-summary"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get User Activity Report",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/analytics/user-activity",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "analytics",
+                                "user-activity"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
